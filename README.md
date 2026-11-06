@@ -1,31 +1,33 @@
-# Develop AI applications locally with zero API costs and transition to production by changing a single string.
-# PFFAI Local Proxy is a macOS-exclusive, OpenAI-compatible gateway that leverages your Gemini browser session to eliminate development-stage billing.
+# Stop burning cash on API keys. Build your AI applications locally at zero cost and harness the world's most powerful models—Gemini, GPT, Claude, Grok, and DuckDuckGo—through a single, drop-in endpoint.
+# Transition to production with just one string change.
 
 ## 1. Executive Overview
-PFFAI Local Proxy is a desktop application engineered for software developers who require extensive API testing without incurring financial overhead. The application runs a local HTTP server that mimics the official OpenAI API structure. Instead of routing requests through a paid API key, it securely routes them through a local browser session using Google Gemini.
+PFFAI Local Proxy is a desktop application engineered for software developers who require extensive API testing without incurring financial overhead. The application runs a local HTTP server that perfectly mimics the official OpenAI API structure. Instead of routing requests through a paid API key, it securely utilizes a local browser session to generate responses. 
 
-This architecture allows developers to build, test, and iterate on AI-powered features for free. When the application is ready for production, developers do not need to rewrite their backend logic. By simply replacing the local base URL with the official OpenAI or Gemini endpoint and injecting a valid API key, the application seamlessly transitions to production.
+This architecture allows developers to build, test, and iterate on AI-powered features for free. While the proxy provides a universal gateway compatible with the world's leading models (including Gemini, GPT, Claude, Grok, and DuckDuckGo), the current automated engine is optimized for Google Gemini. When the application is ready for production, developers do not need to rewrite their backend logic. By simply replacing the local base URL with the official endpoint and injecting a valid API key, the application seamlessly transitions to production.
 
 **Current System Constraints:**
 1. Operating System: macOS only.
-2. AI Provider Support: Google Gemini (via browser session automation).
-3. API Format: OpenAI-compatible endpoints.
+2. Automated AI Provider Engine: Google Gemini (via browser session automation).
+3. API Format: Universal OpenAI-compatible endpoints (allowing integration with any model provider).
 
 ## 2. The "Zero to Production" Workflow
 The primary advantage of this proxy is its drop-in compatibility with the OpenAI SDK. The following Python example demonstrates the transition from local development to production deployment.
 
 ```python
 # 1. Local Development Environment (Zero Cost)
+# You can test your logic against the proxy using any dummy key.
 client = OpenAI(
     base_url="http://localhost:13337/v1/chat/completions",
     api_key="any-dummy-key" 
 )
 
 # 2. Production Environment (Official Billing)
-# To deploy, change the base_url and api_key. No other logic changes are required.
+# To deploy, simply change the base_url and api_key. No core logic changes are required.
+# You can switch to OpenAI, Anthropic (Claude), xAI (Grok), or any other provider.
 client = OpenAI(
     base_url="https://api.openai.com/v1",
-    api_key="sk-your-real-openai-api-key"
+    api_key="sk-your-real-api-key"
 )
 ```
 
@@ -33,7 +35,7 @@ client = OpenAI(
 
 **Zero Token Cost Engine:** The application intercepts API requests and utilizes an active, automated browser session to generate responses. A built-in dashboard tracks the estimated financial savings based on token consumption, providing real-time feedback on development cost reduction.
 
-**OpenAI API Compatibility:** The proxy strictly adheres to the standard `/v1/chat/completions` endpoint format. It correctly parses standard JSON payloads, including roles, message history, and model parameters, ensuring that existing SDKs and HTTP clients function without modification.
+**Universal OpenAI API Compatibility:** The proxy strictly adheres to the standard `/v1/chat/completions` endpoint format. It correctly parses standard JSON payloads, including roles, message history, and model parameters. This universal compatibility ensures that you can build your application logic locally and deploy it to GPT-4, Claude 3.5, Grok, or DuckDuckGo without altering a single line of integration code.
 
 **Dynamic Persona Routing:** Unlike standard proxies, PFFAI allows the creation of custom, task-specific endpoints. For instance, a request routed to `/v1/python` is automatically injected with a system prompt defining the AI as a "Principal Python Architect." Other custom routes can be defined for specific architectural tasks, database optimization (SQL), or general chat, ensuring the model adopts the correct context without repetitive prompt engineering from the client side.
 
